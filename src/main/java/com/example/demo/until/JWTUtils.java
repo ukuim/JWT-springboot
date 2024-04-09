@@ -50,5 +50,14 @@ public class JWTUtils {
         DecodedJWT verify = JWT.require(Algorithm.HMAC256(SING)).build().verify(token);
         return verify;
     }
+        public static String getUserName(String token) {
+        try {
+
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("username").asString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
 
